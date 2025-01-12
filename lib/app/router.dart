@@ -19,12 +19,12 @@ final router = GoRouter(
   ],
   redirect: (context, state) {
     final authState = BlocProvider.of<AuthBloc>(context).state;
-    final loggingIn = state.matchedLocation == '/login';
+    // final loggingIn = state.matchedLocation == '/login';
 
-    if (authState is Unauthenticated && !loggingIn) {
+    if (authState is Unauthenticated) {
       return '/login';
     }
-    if (authState is Authenticated && loggingIn) {
+    if (authState is Authenticated) {
       return '/home';
     }
     return '/login';
